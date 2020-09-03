@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 체크박스 해제상태 -->
+    <item
+        android:drawable="@drawable/confirm_disabled"
+        android:state_enabled="false" />
+    <!-- 체크박스 선택상태 -->
+    <item
+        android:drawable="@drawable/confirm_enabled"
+        android:state_enabled="true" />
+    <!-- default state -->
+    <item android:drawable="@drawable/confirm_disabled" />
+</selector>

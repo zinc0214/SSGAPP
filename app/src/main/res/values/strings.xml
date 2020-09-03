@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SSGAPP</string>
+    <string name="moim_owner">주최자</string>
+    <string name="nickname">닉네임</string>
+</resources>

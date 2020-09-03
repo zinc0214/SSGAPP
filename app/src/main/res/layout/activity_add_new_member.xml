@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/confirmButton">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="20dp"
+                android:paddingTop="30dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="30dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nickNameField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nickname"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor"
+                        android:textSize="18sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/addrField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="사는 곳"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nickNameField">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor"
+                        android:textSize="18sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/ageField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="나이"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/addrField" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+                    android:valueFrom="20"
+                    android:valueTo="40"
+                    app:layout_constraintBottom_toBottomOf="@id/ageField"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ageField"
+                    app:layout_constraintTop_toTopOf="@id/ageField" />
+
+                <ToggleButton
+                    android:id="@+id/man"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/checkbox"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:textOff="여자"
+                    android:textOn="남자"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/slider" />
+
+                <CalendarView
+                    android:id="@+id/calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:focusedMonthDateColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/man" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/confirm_button"
+            android:text="완료"
+            android:padding="15dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:enabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
