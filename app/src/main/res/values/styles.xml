@@ -12,4 +12,8 @@
         <item name="colorAccent">@color/colorAccent</item>r
     </style>
 
+    <style name="ChipTextStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+    </style>
 </resources>

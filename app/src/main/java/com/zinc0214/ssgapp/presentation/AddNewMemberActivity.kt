@@ -1,15 +1,12 @@
-package com.zinc0214.ssgapp
+package com.zinc0214.ssgapp.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.CalendarView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.zinc0214.ssgapp.*
 import com.zinc0214.ssgapp.databinding.ActivityAddNewMemberBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,7 +20,10 @@ class AddNewMemberActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_member)
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_add_new_member
+        )
         viewMode = FirebaseViewModel()
         checkView()
     }
