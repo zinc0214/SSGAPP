@@ -53,4 +53,7 @@ dependencies {
     // fitebase - database
     implementation 'com.google.firebase:firebase-database-ktx:19.4.0'
 
+    //recyclerView
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
 }

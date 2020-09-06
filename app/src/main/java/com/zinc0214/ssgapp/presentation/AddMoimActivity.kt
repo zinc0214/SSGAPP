@@ -1,7 +1,6 @@
 package com.zinc0214.ssgapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,22 +23,7 @@ class AddMoimActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val memberInfoDTO = intent.getSerializableExtra("memberInfo") as ArrayList<MemberInfoDTO>
-        memberInfoDTO.forEach { info ->
-            membersInfo.add(
-                MemberInfo(
-                    info.id,
-                    info.nickname,
-                    info.age,
-                    info.addr,
-                    info.signDate,
-                    info.lastDate,
-                    info.attendeCount,
-                    info.createCount,
-                    info.gender,
-                    info.realName
-                )
-            )
-        }
+        membersInfo = changeDTO(memberInfoDTO)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_moim)
         viewModel = FirebaseViewModel()
         setUpView()
@@ -76,16 +60,18 @@ class AddMoimActivity : AppCompatActivity() {
                     member.lastDate = selectDate
                     updateMembers.add(member)
                 }
-
             }
-            Log.e("ayhan : name ", "${(binding.chipgroup.getChildAt(i) as Chip).text}")
         }
 
+        viewModel.addMoim(updateMembers, object : FirebaseViewModel.SendResult {
+            override fun success(string: String) {
+                Toast.makeText(this@AddMoimActivity, string, Toast.LENGTH_SHORT).show()
+                finish()
+            }
 
-        viewModel.addMoim(updateMembers) { isSuccess, content ->
-            Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
-            if (isSuccess) finish()
-        }
-
+            override fun fail(string: String) {
+                Toast.makeText(this@AddMoimActivity, string, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

@@ -8,41 +8,76 @@
         <variable
             name="activity"
             type="com.zinc0214.ssgapp.presentation.MainActivity" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingStart="20dp"
         android:paddingTop="30dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="30dp"
+        android:theme="@style/MaterialTheme"
         tools:context=".presentation.MainActivity">
 
         <Button
             android:id="@+id/addMember"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@color/other"
+            android:clickable="@{!isLoading}"
             android:onClick="@{v->activity.goToAddMember()}"
             android:text="멤버 추가하기"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/addMoim"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/addMoim"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="벙 일정 추가하기"
-            android:textSize="30sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="@{!isLoading}"
             android:onClick="@{v->activity.goToAddMoim()}"
+            android:text="벙 일정 추가하기"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addMember" />
+
+        <Button
+            android:id="@+id/menageMember"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="@{!isLoading}"
+            android:onClick="@{v->activity.goToManageMember()}"
+            android:text="멤버관리"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addMoim" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

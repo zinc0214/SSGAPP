@@ -13,64 +13,90 @@ import com.google.firebase.ktx.Firebase
 
 class FirebaseViewModel : ViewModel() {
 
+    interface SendResult {
+        fun success(string: String)
+        fun fail(string: String)
+    }
+
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
     private val _membersInfo = MutableLiveData<ArrayList<MemberInfoDTO>>()
     val membesInfoDTO: LiveData<ArrayList<MemberInfoDTO>> get() = _membersInfo
 
-    fun loadMembersInfo() {
+    fun loadMembersInfo(result: SendResult) {
         val database = Firebase.database.reference
         val contentDB = database.child("user")
 
+        _loading.value = true
         contentDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ayhan", "error : $error")
+                _loading.value = false
+                result.fail("데이터 불러오기 실패 ;ㅁ;")
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = ArrayList<MemberInfoDTO>()
                 snapshot.children.forEach {
                     it.getValue<MemberInfoDTO>()?.let { result ->
-                        Log.e("ayhan", "hahaha: ${result.nickname}")
                         list.add(result)
                     }
                 }
+                result.success("데이터 불러오기 성공 > < ")
                 _membersInfo.value = list
+                _loading.value = false
             }
         })
     }
 
-    fun addNewMember(newMember: NewMember, result: (Boolean, String) -> Unit) {
+    fun addNewMember(newMember: NewMember, result: SendResult) {
 
         val database = Firebase.database.reference
         database.child("user").child(newMember.nickname).setValue(newMember)
             .addOnSuccessListener {
-                result(true, "데이터 전송에 성공!")
+                result.success("데이터 전송에 성공!")
             }
             .addOnFailureListener {
-                result(false, "데이터 전송에 실패ㅠㅠ : $it")
+                result.fail("데이터 전송에 실패ㅠㅠ : $it")
             }
     }
 
-    fun addMoim(memberInfos: List<MemberInfo>, result: (Boolean, String) -> Unit) {
+    fun addMoim(memberInfos: List<MemberInfo>, result: SendResult) {
         val database = Firebase.database.reference
-        var isSucess = true
+        var isSucessCount = 0
         memberInfos.forEach {
             val childUpdates = hashMapOf<String, Any>(
                 "/user/${it.nickname}" to it
             )
             database.updateChildren(childUpdates).addOnSuccessListener {
-                Log.e("ayhan", "완료")
-                isSucess = if (isSucess) isSucess else !isSucess
+                isSucessCount++
+                if (isSucessCount == memberInfos.size) result.success("데이터 전송에 성공!")
             }.addOnFailureListener { e ->
-                Log.e("ayhan", "실패 : $e")
-                isSucess = false
+                result.fail("데이터 전송에 실패ㅠㅠ : $e")
             }
         }
-        if (isSucess) {
-            result(true, "데이터 전송에 성공!")
-        } else {
-            result(false, "데이터 전송에 실패ㅠㅠ")
+    }
+
+    fun eidtMember(editMember: EditMember, result: SendResult) {
+
+        val database = Firebase.database.reference
+        database.child("user").child(editMember.nickname).setValue(editMember)
+            .addOnSuccessListener {
+                result.success("데이터 전송에 성공!")
+            }
+            .addOnFailureListener {
+                result.fail("데이터 전송에 실패ㅠㅠ : $it")
+            }
+    }
+
+
+    fun deleteMember(nickName: String, result: SendResult) {
+        val database = Firebase.database.reference.child("user").child(nickName)
+        database.removeValue().addOnSuccessListener {
+            result.success("$nickName 을(를) SSG멤버에서 삭제했습니다 ;ㅁ;")
+        }.addOnFailureListener { e ->
+            result.fail("$nickName 을(를) 의 삭제가 실패했습니다 ㅇㅁㅇ : $e")
         }
-
-
     }
 }

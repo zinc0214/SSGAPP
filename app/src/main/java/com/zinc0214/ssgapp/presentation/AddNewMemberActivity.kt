@@ -56,13 +56,20 @@ class AddNewMemberActivity : AppCompatActivity() {
                 slider.value.toInt(),
                 addrEdit.text.toString(),
                 selectDate,
-                if (man.isChecked) "남자" else "여자"
+                if (man.isChecked) "남자" else "여자",
+                realNameEdit.text.toString()
             )
 
-            viewMode.addNewMember(newMember) { isSuccess, content ->
-                Toast.makeText(this@AddNewMemberActivity, content, Toast.LENGTH_SHORT).show()
-                if (isSuccess) finish()
-            }
+            viewMode.addNewMember(newMember, object : FirebaseViewModel.SendResult {
+                override fun success(string: String) {
+                    Toast.makeText(this@AddNewMemberActivity, string, Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+
+                override fun fail(string: String) {
+                    Toast.makeText(this@AddNewMemberActivity, string, Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }

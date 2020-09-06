@@ -3,17 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="isEnabled"
             type="Boolean" />
+
         <variable
             name="confirmClickListener"
             type="android.view.View.OnClickListener" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:theme="@style/MaterialTheme"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:theme="@style/MaterialTheme">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -70,6 +73,27 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/realNameField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="본명"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/addrField">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/realNameEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor"
+                        android:textSize="18sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <TextView
                     android:id="@+id/ageField"
                     android:layout_width="wrap_content"
@@ -79,7 +103,7 @@
                     android:textColor="@color/textColor"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/addrField" />
+                    app:layout_constraintTop_toBottomOf="@id/realNameField" />
 
                 <com.google.android.material.slider.Slider
                     android:id="@+id/slider"
@@ -128,9 +152,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/confirm_button"
+            android:onClick="@{confirmClickListener}"
             android:padding="15dp"
             android:text="완료"
-            android:onClick="@{confirmClickListener}"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

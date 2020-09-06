@@ -25,7 +25,11 @@
 
         <activity
             android:name=".presentation.AddMoimActivity"
-            android:theme="@style/MaterialTheme"/>
+            android:theme="@style/MaterialTheme" />
+
+        <activity
+            android:name=".presentation.MemberManageActivity"
+            android:theme="@style/MaterialTheme" />
     </application>
 
 </manifest>

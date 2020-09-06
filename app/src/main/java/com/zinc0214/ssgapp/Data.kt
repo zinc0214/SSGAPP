@@ -1,7 +1,6 @@
 package com.zinc0214.ssgapp
 
 import java.io.Serializable
-import java.util.*
 
 
 data class NewMember(
@@ -9,15 +8,16 @@ data class NewMember(
     val age: Int,
     val addr: String,
     val signdate: String,
-    val gender: String
+    val gender: String,
+    val realName: String?
 )
 
 
-data class MoimMember(
+data class EditMember(
     val nickname: String,
-    val lastDate: String,
-    val attendeCount: Int = 0,
-    val createCount: Int = 0
+    val age: Int,
+    val addr: String,
+    val realName: String?
 )
 
 
@@ -44,5 +44,6 @@ data class MemberInfo(
     var attendeCount: Long = 0.toLong(),
     var createCount: Long = 0.toLong(),
     var gender: String = "",
-    var realName: String? = ""
+    var realName: String? = "",
+    var isChecked: Boolean = false
 )

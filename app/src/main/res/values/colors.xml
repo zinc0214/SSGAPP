@@ -10,4 +10,15 @@
     <color name="lightTextColor">#505050</color>
     <color name="disableColor">#77FF847C</color>
     <color name="rippleColor">#FFBCB8</color>
+
+    <color name="gray">#DFDFDF</color>
+    <color name="icon">#feceab</color>
+
+    <color name="_fafafa">#fafafa</color>
+    <color name="_e8e8e8">#e8e8e8</color>
+    <color name="_cancelText">#b4b4b4</color>
+    <color name="_confirmText">#ff847c</color>
+
+    <color name="dialogAllBg">#F6F6F6</color>
+    <color name="_dialogBg">#292929</color>
 </resources>
