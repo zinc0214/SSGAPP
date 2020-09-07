@@ -56,7 +56,7 @@ class AddNewMemberActivity : AppCompatActivity() {
                 slider.value.toInt(),
                 addrEdit.text.toString(),
                 selectDate,
-                if (man.isChecked) "남자" else "여자",
+                if (man.isChecked) "남" else "여",
                 realNameEdit.text.toString()
             )
 

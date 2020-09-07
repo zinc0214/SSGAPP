@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff847c</color>
-    <color name="colorPrimaryDark">#feceab</color>
-    <color name="colorAccent">#e84a5f</color>
+    <color name="colorPrimary">#E8B4B8</color>
+    <color name="colorPrimaryDark">#A49393</color>
+    <color name="colorAccent">#67595E</color>
     <color name="unchecked">#DCDCDC</color>
 
-    <color name="other">#99b898</color>
+    <color name="other">#EED6D3</color>
     <color name="textColor">#111111</color>
     <color name="lightTextColor">#505050</color>
     <color name="disableColor">#77FF847C</color>
     <color name="rippleColor">#FFBCB8</color>
 
     <color name="gray">#DFDFDF</color>
-    <color name="icon">#feceab</color>
+    <color name="icon">#A49393</color>
 
     <color name="_fafafa">#fafafa</color>
     <color name="_e8e8e8">#e8e8e8</color>
     <color name="_cancelText">#b4b4b4</color>
     <color name="_confirmText">#ff847c</color>
 
-    <color name="dialogAllBg">#F6F6F6</color>
+    <color name="dialogAllBg">#F1F1F1</color>
     <color name="_dialogBg">#292929</color>
+
+    <color name="manColor">#267871</color>
+    <color name="womanColor">#683285</color>
+
+    <color name="redColor">#F34C4C</color>
+    <color name="yellowColor">#F3864C</color>
+    <color name="greenColor">#8BC34A</color>
 </resources>

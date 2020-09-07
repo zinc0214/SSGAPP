@@ -50,7 +50,7 @@ class MemberManageActivity : AppCompatActivity() {
     private fun showEditDialog(nickname: String) {
         val originInfo = membersInfo.filter { it.nickname == nickname }[0]
         EditMemberDialogFragment(originInfo) { editInfo ->
-            viewModel.eidtMember(editInfo, object : FirebaseViewModel.SendResult {
+            viewModel.editMember(editInfo, object : FirebaseViewModel.SendResult {
                 override fun success(string: String) {
                     Toast.makeText(this@MemberManageActivity, string, Toast.LENGTH_SHORT).show()
                     adapter.editMember(editInfo)

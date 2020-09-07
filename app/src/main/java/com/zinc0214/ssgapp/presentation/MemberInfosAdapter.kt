@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.zinc0214.ssgapp.EditMember
 import com.zinc0214.ssgapp.MemberInfo
 import com.zinc0214.ssgapp.databinding.ItemMemberParentBinding
 
@@ -64,11 +63,11 @@ class MemberInfosAdapter(
         }
     }
 
-    fun editMember(editInfo: EditMember) {
+    fun editMember(editInfo: MemberInfo) {
         resultList.filter { it.nickname == editInfo.nickname }.apply {
             this[0].apply {
                 addr = editInfo.addr
-                age = editInfo.age.toLong()
+                age = editInfo.age
                 realName = editInfo.realName
             }
         }

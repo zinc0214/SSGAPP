@@ -10,13 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.zinc0214.ssgapp.EditMember
 import com.zinc0214.ssgapp.MemberInfo
 import com.zinc0214.ssgapp.R
 import com.zinc0214.ssgapp.databinding.FragmentEditMemberInfoBinding
 import com.zinc0214.ssgapp.onTextChanged
 
-class EditMemberDialogFragment(val info: MemberInfo, val confirm: (EditMember) -> Unit) :
+class EditMemberDialogFragment(val info: MemberInfo, val confirm: (MemberInfo) -> Unit) :
     DialogFragment() {
 
     private lateinit var binding: FragmentEditMemberInfoBinding
@@ -44,7 +43,10 @@ class EditMemberDialogFragment(val info: MemberInfo, val confirm: (EditMember) -
             memberInfo = info
             addrEdit.onTextChanged { checkConfirmEnable() }
             isEnabled = confirmEnabled
-            confirmClickListener = View.OnClickListener { addNewMember() }
+            confirmClickListener = View.OnClickListener {
+                addNewMember()
+                dismiss()
+            }
         }
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -64,10 +66,16 @@ class EditMemberDialogFragment(val info: MemberInfo, val confirm: (EditMember) -
     @SuppressLint("SimpleDateFormat")
     private fun addNewMember() {
         with(binding) {
-            val editMember = EditMember(
+            val editMember = MemberInfo(
+                info.id,
                 info.nickname,
-                slider.value.toInt(),
+                slider.value.toLong(),
                 addrEdit.text.toString(),
+                info.signDate,
+                info.lastDate,
+                info.attendeCount,
+                info.createCount,
+                info.gender,
                 realNameEdit.text.toString()
             )
             confirm(editMember)

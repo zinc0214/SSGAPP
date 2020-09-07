@@ -78,16 +78,16 @@ class FirebaseViewModel : ViewModel() {
         }
     }
 
-    fun eidtMember(editMember: EditMember, result: SendResult) {
-
+    fun editMember(editMember: MemberInfo, result: SendResult) {
         val database = Firebase.database.reference
-        database.child("user").child(editMember.nickname).setValue(editMember)
-            .addOnSuccessListener {
-                result.success("데이터 전송에 성공!")
-            }
-            .addOnFailureListener {
-                result.fail("데이터 전송에 실패ㅠㅠ : $it")
-            }
+        val childUpdates = hashMapOf<String, Any>(
+            "/user/${editMember.nickname}" to editMember
+        )
+        database.updateChildren(childUpdates).addOnSuccessListener {
+            result.success("데이터 전송에 성공!")
+        }.addOnFailureListener {
+            result.fail("데이터 전송에 실패ㅠㅠ : $it")
+        }
     }
 
 

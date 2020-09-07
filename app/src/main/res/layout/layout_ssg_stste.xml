@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="memberState"
+            type="com.zinc0214.ssgapp.MemberState" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/allMemberField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/allMemberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SSG전체인원 : "
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/allMemberCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{memberState.allNum +`명 (남 `+memberState.manNum+`, 여 `+memberState.womanNum+`)`}"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="10명" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/gradeField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/allMemberField">
+
+            <TextView
+                android:id="@+id/attendTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`벙참석수 Top5\n` + memberState.attendScore}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="참석수" />
+
+            <TextView
+                android:id="@+id/createTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="@{`벙생성수 Top5\n` + memberState.createScore}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="생성수" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/yellowMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{memberState.yellowMember}"
+            android:textColor="@color/yellowColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gradeField"
+            tools:text="10명" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{memberState.redMember}"
+            android:textColor="@color/redColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/yellowMember"
+            tools:text="10명" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

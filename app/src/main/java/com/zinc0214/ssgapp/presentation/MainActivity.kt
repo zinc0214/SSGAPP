@@ -52,12 +52,63 @@ class MainActivity : AppCompatActivity() {
     private val membersInfoObserver = Observer<List<MemberInfoDTO>> {
         membersInfoDTOS = it as ArrayList<MemberInfoDTO>
         memberInfos = changeDTO(membersInfoDTOS)
+        binding.memberState = memberState()
     }
 
     private val loadingObserver = Observer<Boolean> {
         binding.isLoading = it
     }
 
+
+    private fun memberState(): MemberState {
+        val count = memberInfos.count()
+        val manCount = memberInfos.filter { it.gender == "남" }.count()
+        val womanCount = memberInfos.filter { it.gender == "여" }.count()
+
+        return MemberState(
+            count,
+            manCount,
+            womanCount,
+            memberInfos.attendString(),
+            memberInfos.createString(),
+            memberInfos.getYellowMember(),
+            memberInfos.getRedMember()
+        )
+    }
+
+    private fun List<MemberInfo>.attendString(): String {
+        var attendString = ""
+        this.sortedByDescending { it.attendeCount }.take(5)
+            .forEachIndexed { index, memberInfo ->
+                attendString += "${index + 1}등 : ${memberInfo.nickname}(${memberInfo.attendeCount}번)\n"
+            }
+
+        return attendString
+    }
+
+    private fun List<MemberInfo>.createString(): String {
+        var attendString = ""
+        this.sortedByDescending { it.createCount }.take(5).forEachIndexed { index, memberInfo ->
+            attendString += "${index + 1}등 : ${memberInfo.nickname}(${memberInfo.createCount}번)\n"
+        }
+        return attendString
+    }
+
+    private fun List<MemberInfo>.getYellowMember(): String {
+        var yellowMemberString = ""
+        this.filter { it.getDday() in 21..30 }.forEach { memberInfo ->
+            yellowMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
+        }
+        return yellowMemberString
+    }
+
+    private fun List<MemberInfo>.getRedMember(): String {
+        var redMemberString = ""
+        this.filter { it.getDday() > 30 }.forEach { memberInfo ->
+            redMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
+        }
+        return redMemberString
+    }
 
     fun goToAddMember() {
         val intent = Intent(this, AddNewMemberActivity::class.java)
