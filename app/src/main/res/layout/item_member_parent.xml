@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="memberInfo"
+            type="com.zinc0214.ssgapp.MemberInfo" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="editClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="deleteClickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/member_info_bg"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{memberInfo.nickname}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ddayTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="유뉴" />
+
+        <TextView
+            android:id="@+id/ddayTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:text="@{`D+` + memberInfo.dday}"
+            android:textColor="@color/_fafafa"
+            app:layout_constraintStart_toEndOf="@id/nickname"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/green_circle"
+            tools:text="D+10" />
+
+        <TextView
+            android:id="@+id/textInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{memberInfo.age + ` ` + memberInfo.gender + ` `+ memberInfo.addr  + ` ` + memberInfo.realName}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ddayTextView"
+            tools:text="25/여/광진/한아" />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray"
+            android:lineSpacingExtra="5sp"
+            android:padding="10dp"
+            android:text="@{`참석횟수 : ` + memberInfo.attendeCount + `\n생성횟수 : ` + memberInfo.createCount}"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@id/day"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInfo"
+            tools:text="참석횟수 : 10\n생성횟수 : 10" />
+
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:lineSpacingExtra="5sp"
+            android:padding="10dp"
+            android:text="@{`가입일 : ` + memberInfo.signDate + `\n참석일 : ` + memberInfo.lastDate }"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/count"
+            app:layout_constraintTop_toTopOf="@id/count"
+            tools:text="가입일 : 2020/01/01\n참석일 : 2020/01/06" />
+
+        <ImageView
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{editClickListener::onClick}"
+            android:padding="5dp"
+            android:src="@drawable/edit"
+            app:layout_constraintEnd_toStartOf="@id/deleteButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{deleteClickListener::onClick}"
+            android:padding="5dp"
+            android:src="@drawable/delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/detailGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:constraint_referenced_ids="count,day,editButton,deleteButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

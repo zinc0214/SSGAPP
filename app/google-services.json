@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "670671681319",
+    "firebase_url": "https://ssgmanage-ec093.firebaseio.com",
+    "project_id": "ssgmanage-ec093",
+    "storage_bucket": "ssgmanage-ec093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670671681319:android:6519250595d1b7bb1c1b02",
+        "android_client_info": {
+          "package_name": "com.zinc0214.ssgapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670671681319-a2c5gkrkig2ttvae0qsga2h7f8445hiu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnWtIZyLEG04oCunQ_ih2gNzSJH8GOa10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670671681319-a2c5gkrkig2ttvae0qsga2h7f8445hiu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

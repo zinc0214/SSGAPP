@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isEnabled"
+            type="Boolean" />
+
+        <variable
+            name="confirmClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="memberInfo"
+            type="com.zinc0214.ssgapp.MemberInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="20dp"
+        android:background="@drawable/dialog_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingTop="30dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="30dp"
+        android:theme="@style/MaterialTheme">
+
+        <TextView
+            android:id="@+id/nicknameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{memberInfo.nickname + ` / ` + memberInfo.gender}"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="유뉴 / 여" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addrField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="사는 곳"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nicknameTextView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addrEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{memberInfo.addr}"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/realNameField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="본명"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addrField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/realNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{memberInfo.realName}"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/ageField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="나이"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/realNameField" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:value="@{memberInfo.age}"
+            android:valueFrom="20"
+            android:valueTo="40"
+            app:layout_constraintBottom_toBottomOf="@id/ageField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ageField"
+            app:layout_constraintTop_toTopOf="@id/ageField" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/confirm_button"
+            android:onClick="@{confirmClickListener}"
+            android:padding="15dp"
+            android:text="완료"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
