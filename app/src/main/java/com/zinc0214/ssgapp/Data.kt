@@ -25,7 +25,6 @@ data class MemberState(
 )
 
 class MemberInfoDTO : Serializable {
-    val id: Long = 0.toLong()
     val nickname: String = ""
     val age: Long = 0.toLong()
     val addr: String = ""
@@ -38,7 +37,6 @@ class MemberInfoDTO : Serializable {
 }
 
 data class MemberInfo(
-    var id: Long = 0.toLong(),
     var nickname: String = "",
     var age: Long = 0.toLong(),
     var addr: String = "",

@@ -42,11 +42,18 @@ class MainActivity : AppCompatActivity() {
         viewModel.loading.observe(this, loadingObserver)
 
         viewModel.loadMembersInfo(resultCallBack)
+        setUpViews()
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.loadMembersInfo(resultCallBack)
+    }
+
+    private fun setUpViews() {
+        binding.memberLayout.redMember.setTextIsSelectable(true)
+        binding.memberLayout.yellowMember.setTextIsSelectable(true)
+
     }
 
     private val membersInfoObserver = Observer<List<MemberInfoDTO>> {
@@ -94,20 +101,20 @@ class MainActivity : AppCompatActivity() {
         return attendString
     }
 
-    private fun List<MemberInfo>.getYellowMember(): String {
-        var yellowMemberString = ""
-        this.filter { it.getDday() in 21..30 }.forEach { memberInfo ->
-            yellowMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
-        }
-        return yellowMemberString
-    }
-
     private fun List<MemberInfo>.getRedMember(): String {
         var redMemberString = ""
         this.filter { it.getDday() > 30 }.forEach { memberInfo ->
             redMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
         }
         return redMemberString
+    }
+
+    private fun List<MemberInfo>.getYellowMember(): String {
+        var yellowMemberString = ""
+        this.filter { it.getDday() in 21..30 }.forEach { memberInfo ->
+            yellowMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
+        }
+        return yellowMemberString
     }
 
     fun goToAddMember() {
@@ -126,4 +133,5 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("memberInfo", membersInfoDTOS)
         startActivity(intent)
     }
+
 }

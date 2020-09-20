@@ -26,6 +26,8 @@
     <color name="womanColor">#683285</color>
 
     <color name="redColor">#F34C4C</color>
+    <color name="redMemberColor">#320C0C</color>
     <color name="yellowColor">#F3864C</color>
+    <color name="yellowMemberColor">#5A2A10</color>
     <color name="greenColor">#8BC34A</color>
 </resources>

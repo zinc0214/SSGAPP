@@ -58,7 +58,6 @@ fun changeDTO(infos: ArrayList<MemberInfoDTO>): ArrayList<MemberInfo> {
     infos.forEach { info ->
         membersInfo.add(
             MemberInfo(
-                info.id,
                 info.nickname,
                 info.age,
                 info.addr,

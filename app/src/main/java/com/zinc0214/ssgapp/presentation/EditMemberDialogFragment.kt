@@ -67,7 +67,6 @@ class EditMemberDialogFragment(val info: MemberInfo, val confirm: (MemberInfo) -
     private fun addNewMember() {
         with(binding) {
             val editMember = MemberInfo(
-                info.id,
                 info.nickname,
                 slider.value.toLong(),
                 addrEdit.text.toString(),
