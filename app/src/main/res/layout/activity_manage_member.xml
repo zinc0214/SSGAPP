@@ -38,6 +38,10 @@
                 android:id="@+id/memberSearchEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
 
