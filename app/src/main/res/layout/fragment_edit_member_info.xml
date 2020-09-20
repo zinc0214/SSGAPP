@@ -19,14 +19,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_margin="20dp"
-        android:background="@drawable/dialog_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/dialog_bg"
         android:paddingStart="20dp"
         android:paddingTop="30dp"
         android:paddingEnd="20dp"
-        android:paddingBottom="30dp"
+        android:paddingBottom="20dp"
         android:theme="@style/MaterialTheme">
 
         <TextView
@@ -57,6 +57,7 @@
                 android:id="@+id/addrEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:text="@{memberInfo.addr}"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
@@ -78,36 +79,34 @@
                 android:id="@+id/realNameEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:text="@{memberInfo.realName}"
                 android:textColor="@color/textColor"
                 android:textSize="18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ageField"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="나이"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/realNameField" />
-
-        <com.google.android.material.slider.Slider
-            android:id="@+id/slider"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:stepSize="1"
-            android:value="@{memberInfo.age}"
-            android:valueFrom="20"
-            android:valueTo="40"
-            app:layout_constraintBottom_toBottomOf="@id/ageField"
+            android:layout_marginTop="10dp"
+            android:hint="나이"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ageField"
-            app:layout_constraintTop_toTopOf="@id/ageField" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/realNameField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ageEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="@{memberInfo.ageString}"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/confirmButton"
@@ -116,14 +115,14 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/confirm_button"
             android:onClick="@{confirmClickListener}"
-            android:padding="15dp"
+            android:padding="10dp"
             android:text="완료"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/slider" />
+            app:layout_constraintTop_toBottomOf="@id/ageField" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

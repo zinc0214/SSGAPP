@@ -65,6 +65,10 @@ data class MemberInfo(
         }
     }
 
+    fun getAgeString(): String {
+        return age.toString()
+    }
+
 }
 
 
