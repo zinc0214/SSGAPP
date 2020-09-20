@@ -2,7 +2,7 @@
     <string name="app_name">SSGAPP</string>
     <string name="moim_owner">주최자</string>
     <string name="nickname">닉네임</string>
-    <string name="attend_info">참석자를 모두 입력해주세요. \n참석자 구분은 \'/\' \'공백\' \',\' 으로 할 수 있습니다.\n아래의 칩에서 벙생성자를 꼭 선택해주세요</string>
+    <string name="attend_info">참석자를 모두 입력해주세요. \n참석자 구분은 \'/\' \'공백\' \',\' 으로 할 수 있습니다.\n<b>아래의 칩에서 벙생성자를 꼭 선택해주세요</b>\n<b>멤버 리스트에 없는 멤버를 적으면 해당 멤버는 추가되지 않으며 자동으로 칩에서 지워집니다. 새로운 멤버는 우선 멤버추가를 해주세요!</b></string>
     <string name="all_count"><![CDATA[전체인원 : <font color=#95bbff>%s</font>명]]></string>
     <string name="man_count"><![CDATA[<font color=#009688>남자</font><font color=#95bbff>%s</font>명]]></string>
     <string name="woman_count"><![CDATA[<font color=#8027B0>여자</font><font color=#95bbff>%s</font>명]]></string>
