@@ -1,7 +1,9 @@
 package com.zinc0214.ssgapp.presentation
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -31,6 +33,9 @@ class AddMoimActivity : AppCompatActivity() {
 
     private fun setUpView() {
         binding.apply {
+            attendeeEdit.imeOptions = EditorInfo.IME_ACTION_DONE
+            attendeeEdit.setRawInputType(InputType.TYPE_CLASS_TEXT)
+
             attendeeEdit.onTextChanged {
                 chipgroup.removeAllViews()
                 val list = it.split(".", ",", "/", " ").distinct()
