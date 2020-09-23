@@ -49,11 +49,11 @@ data class MemberInfo(
     var isChecked: Boolean = false
 ) {
     fun getDday(): Int {
-        val signDday = if (signDate.isBlank()) 0 else signDate.parseDate().toDate().dDay()
-        val lastDday = if (lastDate.isBlank()) 0 else lastDate.parseDate().toDate().dDay()
+        val signDday = if (signDate.isBlank()) -1 else signDate.parseDate().toDate().dDay()
+        val lastDday = if (lastDate.isBlank()) -1 else lastDate.parseDate().toDate().dDay()
 
-        return if (signDday == 0 && lastDday > 0) lastDday
-        else if (lastDday == 0 && signDday > 0) signDday
+        return if (signDday == -1 && lastDday > 0) lastDday
+        else if (lastDday == -1 && signDday > 0) signDday
         else if (signDday.compareTo(lastDday) == 1) lastDday else signDday
     }
 
