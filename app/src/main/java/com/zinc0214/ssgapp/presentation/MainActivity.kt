@@ -51,15 +51,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpViews() {
-        binding.memberLayout.redMember.setTextIsSelectable(true)
-        binding.memberLayout.yellowMember.setTextIsSelectable(true)
-
+        binding.memberLayout.apply {
+            attendTextView.setTextIsSelectable(true)
+            createTextView.setTextIsSelectable(true)
+            redMember.setTextIsSelectable(true)
+        }
     }
 
     private val membersInfoObserver = Observer<List<MemberInfoDTO>> {
         membersInfoDTOS = it as ArrayList<MemberInfoDTO>
         memberInfos = changeDTO(membersInfoDTOS)
         binding.memberState = memberState()
+        binding.memberLayout.redTextView.setOnClickListener {
+            DdayFilteDialogFragment(memberInfos).show(
+                this.supportFragmentManager,
+                "filter"
+            )
+        }
     }
 
     private val loadingObserver = Observer<Boolean> {
@@ -78,7 +86,6 @@ class MainActivity : AppCompatActivity() {
             womanCount,
             memberInfos.attendString(),
             memberInfos.createString(),
-            memberInfos.getYellowMember(),
             memberInfos.getRedMember()
         )
     }
@@ -104,17 +111,9 @@ class MainActivity : AppCompatActivity() {
     private fun List<MemberInfo>.getRedMember(): String {
         var redMemberString = ""
         this.filter { it.getDday() > 30 }.forEach { memberInfo ->
-            redMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
+            redMemberString += "${memberInfo.nickname} "
         }
         return redMemberString
-    }
-
-    private fun List<MemberInfo>.getYellowMember(): String {
-        var yellowMemberString = ""
-        this.filter { it.getDday() in 21..30 }.forEach { memberInfo ->
-            yellowMemberString += "${memberInfo.nickname}(D+${memberInfo.getDday()}) "
-        }
-        return yellowMemberString
     }
 
     fun goToAddMember() {

@@ -20,7 +20,6 @@ data class MemberState(
     val womanNum: Int,
     val attendScore: String,
     val createScore: String,
-    val yellowMember: String,
     val redMember: String
 )
 
