@@ -79,31 +79,34 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/yellowMember"
+            android:id="@+id/redTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{memberState.yellowMember}"
-            android:textColor="@color/yellowColor"
+            android:drawablePadding="10dp"
+            android:text="D-day 4주 이상"
+            android:textColor="@color/redColor"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:drawableEndCompat="@drawable/search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gradeField"
-            tools:text="10명" />
+            app:layout_constraintTop_toBottomOf="@id/gradeField" />
 
         <TextView
+            android:id="@+id/redMember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@{memberState.redMember}"
-            android:textColor="@color/redColor"
+            android:textColor="@color/redMemberColor"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/yellowMember"
+            app:layout_constraintTop_toBottomOf="@id/redTextView"
             tools:text="10명" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

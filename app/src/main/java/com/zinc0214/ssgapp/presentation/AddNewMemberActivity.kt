@@ -2,6 +2,7 @@ package com.zinc0214.ssgapp.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,8 @@ class AddNewMemberActivity : AppCompatActivity() {
             R.layout.activity_add_new_member
         )
         viewMode = FirebaseViewModel()
+
+        Log.e("ayhan", "currentDate :$selectDate")
         checkView()
     }
 
@@ -32,6 +35,7 @@ class AddNewMemberActivity : AppCompatActivity() {
         with(binding) {
             nickNameEdit.onTextChanged { checkConfirmEnable() }
             addrEdit.onTextChanged { checkConfirmEnable() }
+            ageEdit.onTextChanged { checkConfirmEnable() }
             isEnabled = confirmEnabled
             confirmClickListener = View.OnClickListener { addNewMember() }
             calendar.setOnDateChangeListener { _, p1, p2, p3 ->
@@ -42,7 +46,8 @@ class AddNewMemberActivity : AppCompatActivity() {
 
     private fun checkConfirmEnable() {
         with(binding) {
-            confirmEnabled = nickNameEdit.text?.isNotBlank()!! && addrEdit.text?.isNotBlank()!!
+            confirmEnabled =
+                nickNameEdit.text?.isNotBlank()!! && addrEdit.text?.isNotBlank()!! && ageEdit.text?.isNotBlank()!!
             confirmButton.isEnabled = confirmEnabled
             notifyChange()
         }
@@ -53,10 +58,10 @@ class AddNewMemberActivity : AppCompatActivity() {
         with(binding) {
             val newMember = NewMember(
                 nickNameEdit.text.toString(),
-                slider.value.toInt(),
+                ageEdit.text.toString().toInt(),
                 addrEdit.text.toString(),
                 selectDate,
-                if (man.isChecked) "남" else "여",
+                if (genderButton.isChecked) "남" else "여",
                 realNameEdit.text.toString()
             )
 

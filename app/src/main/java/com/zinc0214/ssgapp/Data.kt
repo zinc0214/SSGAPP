@@ -20,12 +20,10 @@ data class MemberState(
     val womanNum: Int,
     val attendScore: String,
     val createScore: String,
-    val yellowMember: String,
     val redMember: String
 )
 
 class MemberInfoDTO : Serializable {
-    val id: Long = 0.toLong()
     val nickname: String = ""
     val age: Long = 0.toLong()
     val addr: String = ""
@@ -38,7 +36,6 @@ class MemberInfoDTO : Serializable {
 }
 
 data class MemberInfo(
-    var id: Long = 0.toLong(),
     var nickname: String = "",
     var age: Long = 0.toLong(),
     var addr: String = "",
@@ -51,11 +48,11 @@ data class MemberInfo(
     var isChecked: Boolean = false
 ) {
     fun getDday(): Int {
-        val signDday = if (signDate.isBlank()) 0 else signDate.parseDate().toDate().dDay()
-        val lastDday = if (lastDate.isBlank()) 0 else lastDate.parseDate().toDate().dDay()
+        val signDday = if (signDate.isBlank()) -1 else signDate.parseDate().toDate().dDay()
+        val lastDday = if (lastDate.isBlank()) -1 else lastDate.parseDate().toDate().dDay()
 
-        return if (signDday == 0 && lastDday > 0) lastDday
-        else if (lastDday == 0 && signDday > 0) signDday
+        return if (signDday == -1 && lastDday > 0) lastDday
+        else if (lastDday == -1 && signDday > 0) signDday
         else if (signDday.compareTo(lastDday) == 1) lastDday else signDday
     }
 
@@ -65,6 +62,10 @@ data class MemberInfo(
             dday > 21 -> DDayType.YELLOW
             else -> DDayType.GREEN
         }
+    }
+
+    fun getAgeString(): String {
+        return age.toString()
     }
 
 }
