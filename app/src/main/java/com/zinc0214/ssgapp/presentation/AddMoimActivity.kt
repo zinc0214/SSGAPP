@@ -51,7 +51,8 @@ class AddMoimActivity : AppCompatActivity() {
                 }
             }
 
-            confirmClickListener = View.OnClickListener { if (previousCheck()) addMoim() }
+            confirmClickListener =
+                View.OnClickListener { if (previousCheck() && checkCreator()) addMoim() }
         }
     }
 
@@ -82,6 +83,19 @@ class AddMoimActivity : AppCompatActivity() {
             }
             false
         }
+    }
+
+    private fun checkCreator(): Boolean {
+        for (i in 0 until binding.chipgroup.childCount) {
+            val chip = binding.chipgroup.getChildAt(i) as Chip
+            if (chip.isChecked) return true
+        }
+        Toast.makeText(
+            this@AddMoimActivity,
+            "벙 생성자를 선택해주세요.",
+            Toast.LENGTH_SHORT
+        ).show()
+        return false
     }
 
     private fun addMoim() {
