@@ -2,6 +2,7 @@ package com.zinc0214.ssgapp.presentation
 
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -46,9 +47,13 @@ class AddMoimActivity : AppCompatActivity() {
                         chipgroup.addView(chip)
                     }
                 }
-                calendar.setOnDateChangeListener { _, p1, p2, p3 ->
-                    selectDate = "$p1/${(p2 + 1).setDate()}/${p3.setDate()}"
-                }
+            }
+
+            calendar.setOnDateChangeListener { _, p1, p2, p3 ->
+                val month = if (p2 == 9) "10" else "${p2 + 1}"
+                val day = if (p3 == 10) "10" else p3.setDate()
+                selectDate = "$p1/$month/$day"
+                Log.e("ayhan", "selectDate : $selectDate")
             }
 
             confirmClickListener =
