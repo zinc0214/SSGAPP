@@ -133,4 +133,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun goToManagerMoim() {
+        val intent = Intent(this, MoimManageActivity::class.java)
+        startActivity(intent)
+    }
+
 }

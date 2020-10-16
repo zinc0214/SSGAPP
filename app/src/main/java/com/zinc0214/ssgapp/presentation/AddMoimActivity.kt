@@ -57,7 +57,12 @@ class AddMoimActivity : AppCompatActivity() {
             }
 
             confirmClickListener =
-                View.OnClickListener { if (previousCheck() && checkCreator()) addMoim() }
+                View.OnClickListener {
+                    if (previousCheck() && checkCreator()) {
+                        addMoim()
+                        addMoimInfo()
+                    }
+                }
         }
     }
 
@@ -128,5 +133,31 @@ class AddMoimActivity : AppCompatActivity() {
                 Toast.makeText(this@AddMoimActivity, string, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun addMoimInfo() {
+        var creator = ""
+        var attendee = ""
+        for (i in 0 until binding.chipgroup.childCount) {
+            val chip = binding.chipgroup.getChildAt(i) as Chip
+            if (chip.isChecked) {
+                creator = chip.text as String
+            } else {
+                attendee = if (attendee.isNotBlank()) {
+                    attendee + ", " + chip.text
+                } else {
+                    chip.text.toString()
+                }
+
+            }
+
+        }
+        val moimInfo = MoimInfo().apply {
+            this.date = selectDate
+            this.creator = creator
+            this.attendee = attendee
+        }
+
+        viewModel.addMoimInfo(moimInfo)
     }
 }

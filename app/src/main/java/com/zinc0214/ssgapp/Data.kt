@@ -80,3 +80,9 @@ private fun Date.dDay(): Int {
 enum class DDayType {
     RED, YELLOW, GREEN
 }
+
+class MoimInfo : Serializable {
+    var date: String = ""
+    var creator: String = ""
+    var attendee: String = ""
+}

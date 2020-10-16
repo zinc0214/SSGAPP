@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="moimInfo"
+            type="com.zinc0214.ssgapp.MoimInfo" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/member_info_bg"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/moimDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{`모임날짜 : ` + moimInfo.date}"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="모임날짜 : 2020. 10. 10" />
+
+        <TextView
+            android:id="@+id/creator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{`생성자 : ` + moimInfo.creator}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moimDate"
+            tools:text="생성자 : 유뉴" />
+
+        <TextView
+            android:id="@+id/attendee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{`참석자 : ` + moimInfo.attendee}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/creator"
+            tools:text="참석자 : 유뉴" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
