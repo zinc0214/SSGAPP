@@ -10,7 +10,8 @@ data class NewMember(
     val addr: String,
     val signDate: String,
     val gender: String,
-    val realName: String?
+    val realName: String?,
+    val phone: String?
 )
 
 
@@ -33,6 +34,7 @@ class MemberInfoDTO : Serializable {
     val createCount: Long = 0.toLong()
     val gender: String = ""
     val realName: String? = ""
+    val phone: String? = ""
 }
 
 data class MemberInfo(
@@ -45,6 +47,7 @@ data class MemberInfo(
     var createCount: Long = 0.toLong(),
     var gender: String = "",
     var realName: String? = "",
+    var phone: String? = "",
     var isChecked: Boolean = false
 ) {
     fun getDday(): Int {

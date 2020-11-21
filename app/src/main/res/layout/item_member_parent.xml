@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="memberInfo"
             type="com.zinc0214.ssgapp.MemberInfo" />
@@ -67,6 +69,22 @@
             app:layout_constraintTop_toBottomOf="@id/ddayTextView"
             tools:text="25/여/광진/한아" />
 
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="5sp"
+            android:text="@{memberInfo.phone}"
+            android:visibility="@{memberInfo.phone.empty ? View.GONE : View.VISIBLE}"
+            android:textSize="17sp"
+            android:autoLink="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInfo"
+            tools:text="010 5581 8406" />
+
+
         <TextView
             android:id="@+id/count"
             android:layout_width="0dp"
@@ -79,7 +97,7 @@
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@id/day"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInfo"
+            app:layout_constraintTop_toBottomOf="@id/phone"
             tools:text="참석횟수 : 10\n생성횟수 : 10" />
 
         <TextView

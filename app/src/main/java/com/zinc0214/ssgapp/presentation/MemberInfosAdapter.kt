@@ -69,6 +69,7 @@ class MemberInfosAdapter(
                 addr = editInfo.addr
                 age = editInfo.age
                 realName = editInfo.realName
+                phone = editInfo.phone
             }
         }
         notifyDataSetChanged()

@@ -27,6 +27,7 @@ class AddNewMemberActivity : AppCompatActivity() {
         )
         viewMode = FirebaseViewModel()
 
+        "sss".isNotBlank()
         Log.e("ayhan", "currentDate :$selectDate")
         checkView()
     }
@@ -66,7 +67,8 @@ class AddNewMemberActivity : AppCompatActivity() {
                 addrEdit.text.toString(),
                 selectDate,
                 if (genderButton.isChecked) "남" else "여",
-                realNameEdit.text.toString()
+                realNameEdit.text.toString(),
+                phoneEdit.text.toString()
             )
 
             viewMode.addNewMember(newMember, object : FirebaseViewModel.SendResult {
