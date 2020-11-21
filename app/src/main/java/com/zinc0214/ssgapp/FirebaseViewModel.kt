@@ -132,7 +132,6 @@ class FirebaseViewModel : ViewModel() {
 
     fun addMoimInfo(moimInfo: MoimInfo) {
         val database = Firebase.database.reference
-        val path = moimInfo.date.replace("/", "")
-        database.child("moim").child(path).setValue(moimInfo)
+        database.child("moim").child(moimInfo.id).setValue(moimInfo)
     }
 }

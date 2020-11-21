@@ -85,7 +85,10 @@ enum class DDayType {
 }
 
 class MoimInfo : Serializable {
+    var id: String = ""
     var date: String = ""
     var creator: String = ""
     var attendee: String = ""
+    var addr: String = ""
+    var kind: String = ""
 }

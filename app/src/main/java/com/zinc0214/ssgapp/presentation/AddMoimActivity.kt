@@ -153,9 +153,12 @@ class AddMoimActivity : AppCompatActivity() {
 
         }
         val moimInfo = MoimInfo().apply {
+            this.id = selectDate.replace("/", "") + "_${creator}"
             this.date = selectDate
             this.creator = creator
             this.attendee = attendee
+            this.addr = binding.addrEdit.text.toString()
+            this.kind = binding.kindEdit.text.toString()
         }
 
         viewModel.addMoimInfo(moimInfo)

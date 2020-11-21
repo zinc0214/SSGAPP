@@ -50,6 +50,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/creator"
             tools:text="참석자 : 유뉴" />
+
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{`장소 : ` + moimInfo.addr + ` / 종류 : ` + moimInfo.kind}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/attendee"
+            tools:text="장소 : 잠실새내, 종류 : 술벙" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
