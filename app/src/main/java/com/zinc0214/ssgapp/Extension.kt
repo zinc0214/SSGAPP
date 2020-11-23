@@ -66,7 +66,8 @@ fun changeDTO(infos: ArrayList<MemberInfoDTO>): ArrayList<MemberInfo> {
                 info.attendeCount,
                 info.createCount,
                 info.gender,
-                info.realName
+                info.realName,
+                info.phone
             )
         )
     }
@@ -76,10 +77,7 @@ fun changeDTO(infos: ArrayList<MemberInfoDTO>): ArrayList<MemberInfo> {
 fun String.parseDate(): String {
     return if (this.isNotBlank()) {
         Log.e("ayhan", "string : $this")
-        val year = this.substring(0, 4)
-        val month = this.substring(5, 7)
-        val date = this.substring(8, 10)
-        "$year/$month/$date"
+        this
     } else {
         ""
     }

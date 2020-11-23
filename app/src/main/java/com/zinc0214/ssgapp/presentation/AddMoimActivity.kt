@@ -2,6 +2,7 @@ package com.zinc0214.ssgapp.presentation
 
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -46,13 +47,22 @@ class AddMoimActivity : AppCompatActivity() {
                         chipgroup.addView(chip)
                     }
                 }
-                calendar.setOnDateChangeListener { _, p1, p2, p3 ->
-                    selectDate = "$p1/${(p2 + 1).setDate()}/${p3.setDate()}"
-                }
+            }
+
+            calendar.setOnDateChangeListener { _, p1, p2, p3 ->
+                val month = if (p2 == 9) "10" else "${p2 + 1}"
+                val day = if (p3 == 10) "10" else p3.setDate()
+                selectDate = "$p1/$month/$day"
+                Log.e("ayhan", "selectDate : $selectDate")
             }
 
             confirmClickListener =
-                View.OnClickListener { if (previousCheck() && checkCreator()) addMoim() }
+                View.OnClickListener {
+                    if (previousCheck() && checkCreator()) {
+                        addMoim()
+                        addMoimInfo()
+                    }
+                }
         }
     }
 
@@ -123,5 +133,34 @@ class AddMoimActivity : AppCompatActivity() {
                 Toast.makeText(this@AddMoimActivity, string, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun addMoimInfo() {
+        var creator = ""
+        var attendee = ""
+        for (i in 0 until binding.chipgroup.childCount) {
+            val chip = binding.chipgroup.getChildAt(i) as Chip
+            if (chip.isChecked) {
+                creator = chip.text as String
+            } else {
+                attendee = if (attendee.isNotBlank()) {
+                    attendee + ", " + chip.text
+                } else {
+                    chip.text.toString()
+                }
+
+            }
+
+        }
+        val moimInfo = MoimInfo().apply {
+            this.id = selectDate.replace("/", "") + "_${creator}"
+            this.date = selectDate
+            this.creator = creator
+            this.attendee = attendee
+            this.addr = binding.addrEdit.text.toString()
+            this.kind = binding.kindEdit.text.toString()
+        }
+
+        viewModel.addMoimInfo(moimInfo)
     }
 }

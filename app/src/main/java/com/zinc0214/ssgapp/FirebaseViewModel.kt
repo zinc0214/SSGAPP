@@ -24,6 +24,9 @@ class FirebaseViewModel : ViewModel() {
     private val _membersInfo = MutableLiveData<ArrayList<MemberInfoDTO>>()
     val membesInfoDTO: LiveData<ArrayList<MemberInfoDTO>> get() = _membersInfo
 
+    private val _moimInfo = MutableLiveData<ArrayList<MoimInfo>>()
+    val moimInfoDTO: LiveData<ArrayList<MoimInfo>> get() = _moimInfo
+
     fun loadMembersInfo(result: SendResult) {
         val database = Firebase.database.reference
         val contentDB = database.child("user")
@@ -98,5 +101,37 @@ class FirebaseViewModel : ViewModel() {
         }.addOnFailureListener { e ->
             result.fail("$nickName 을(를) 의 삭제가 실패했습니다 ㅇㅁㅇ : $e")
         }
+    }
+
+
+    fun loadMoimInfo(result: SendResult) {
+        val database = Firebase.database.reference
+        val contentDB = database.child("moim")
+
+        _loading.value = true
+        contentDB.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("ayhan", "error : $error")
+                _loading.value = false
+                result.fail("데이터 불러오기 실패 ;ㅁ;")
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val list = ArrayList<MoimInfo>()
+                snapshot.children.forEach {
+                    it.getValue<MoimInfo>()?.let { result ->
+                        list.add(result)
+                    }
+                }
+                result.success("데이터 불러오기 성공 > < ")
+                _moimInfo.value = list
+                _loading.value = false
+            }
+        })
+    }
+
+    fun addMoimInfo(moimInfo: MoimInfo) {
+        val database = Firebase.database.reference
+        database.child("moim").child(moimInfo.id).setValue(moimInfo)
     }
 }

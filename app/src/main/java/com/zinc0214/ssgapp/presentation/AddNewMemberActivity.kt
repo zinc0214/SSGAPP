@@ -27,6 +27,7 @@ class AddNewMemberActivity : AppCompatActivity() {
         )
         viewMode = FirebaseViewModel()
 
+        "sss".isNotBlank()
         Log.e("ayhan", "currentDate :$selectDate")
         checkView()
     }
@@ -39,8 +40,12 @@ class AddNewMemberActivity : AppCompatActivity() {
             isEnabled = confirmEnabled
             confirmClickListener = View.OnClickListener { addNewMember() }
             calendar.setOnDateChangeListener { _, p1, p2, p3 ->
-                selectDate = "$p1/${(p2 + 1).setDate()}/${p3.setDate()}"
+                val month = if (p2 == 9) "10" else "${p2 + 1}"
+                val day = if (p3 == 10) "10" else p3.setDate()
+                selectDate = "$p1/$month/$day"
+                Log.e("ayhan", "selectDate : $selectDate")
             }
+
         }
     }
 
@@ -62,7 +67,8 @@ class AddNewMemberActivity : AppCompatActivity() {
                 addrEdit.text.toString(),
                 selectDate,
                 if (genderButton.isChecked) "남" else "여",
-                realNameEdit.text.toString()
+                realNameEdit.text.toString(),
+                phoneEdit.text.toString()
             )
 
             viewMode.addNewMember(newMember, object : FirebaseViewModel.SendResult {

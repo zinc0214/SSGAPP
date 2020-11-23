@@ -75,7 +75,8 @@ class EditMemberDialogFragment(val info: MemberInfo, val confirm: (MemberInfo) -
                 info.attendeCount,
                 info.createCount,
                 info.gender,
-                realNameEdit.text.toString()
+                realName = realNameEdit.text.toString(),
+                phone = phoneEdit.text.toString()
             )
             confirm(editMember)
         }
