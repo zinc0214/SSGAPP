@@ -9,6 +9,11 @@
             name="memberInfo"
             type="com.zinc0214.ssgapp.MemberInfo" />
 
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <import type="android.view.View" />
     </data>
 
 
@@ -44,6 +49,15 @@
             app:layout_constraintTop_toBottomOf="@id/guideTextView"
             tools:listitem="@layout/item_member_parent" />
 
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

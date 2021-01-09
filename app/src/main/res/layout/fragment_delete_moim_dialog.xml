@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="nickName"
+            name="titleDesc"
             type="String" />
 
         <variable
@@ -24,17 +24,17 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="@drawable/dialog_bg"
-        android:paddingTop="10dp"
         android:paddingStart="20dp"
-        android:paddingBottom="5dp"
-        android:paddingEnd="20dp">
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{nickName + `을(를) 삭제하겠습니까?`}"
+            android:text="@{titleDesc}"
             android:textColor="@color/textColor"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -43,6 +43,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="유뉴를 삭제하겠습니까?" />
 
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/moim_delete_desc"
+            android:textColor="@color/_dialogBg"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <TextView
             android:id="@+id/cancel"
@@ -56,9 +68,10 @@
             android:text="취소"
             android:textColor="@color/_cancelText"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/confirm"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/desc" />
 
 
         <TextView
@@ -72,9 +85,11 @@
             android:padding="15dp"
             android:text="삭제"
             android:textColor="@color/_confirmText"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cancel"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/desc" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,6 @@
     <string name="all_count"><![CDATA[전체인원 : <font color=#95bbff>%s</font>명]]></string>
     <string name="man_count"><![CDATA[<font color=#009688>남자</font><font color=#95bbff>%s</font>명]]></string>
     <string name="woman_count"><![CDATA[<font color=#8027B0>여자</font><font color=#95bbff>%s</font>명]]></string>
+    <string name="moim_delete_desc">벙 삭제시, 생성자와 참여자의 카운트는 자동으로 각각 -1 됩니다.\n그러나 참석날짜는 그대로 남아있음에 유의해주세요!</string>
+    <string name="moim_edit_desc">벙 수정은 해당 벙 삭제 > 다시 벙 추가와 동일합니다.\n때문에 이미 벙이 참석했던 사람은 그 전 날짜로 돌릴 수 없습니다!\n참석,생성횟수는 자동 수정됩니다.</string>
 </resources>

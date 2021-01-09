@@ -27,7 +27,7 @@ class FirebaseViewModel : ViewModel() {
     private val _moimInfo = MutableLiveData<ArrayList<MoimInfo>>()
     val moimInfoDTO: LiveData<ArrayList<MoimInfo>> get() = _moimInfo
 
-    fun loadMembersInfo(result: SendResult) {
+    fun loadMembersInfo(result: SendResult? = null) {
         val database = Firebase.database.reference
         val contentDB = database.child("user")
 
@@ -36,7 +36,7 @@ class FirebaseViewModel : ViewModel() {
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ayhan", "error : $error")
                 _loading.value = false
-                result.fail("데이터 불러오기 실패 ;ㅁ;")
+                result?.fail("데이터 불러오기 실패 ;ㅁ;")
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -46,7 +46,7 @@ class FirebaseViewModel : ViewModel() {
                         list.add(result)
                     }
                 }
-                result.success("데이터 불러오기 성공 > < ")
+                result?.success("데이터 불러오기 성공 > < ")
                 _membersInfo.value = list
                 _loading.value = false
             }
@@ -104,7 +104,7 @@ class FirebaseViewModel : ViewModel() {
     }
 
 
-    fun loadMoimInfo(result: SendResult) {
+    fun loadMoimInfo() {
         val database = Firebase.database.reference
         val contentDB = database.child("moim")
 
@@ -113,7 +113,6 @@ class FirebaseViewModel : ViewModel() {
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ayhan", "error : $error")
                 _loading.value = false
-                result.fail("데이터 불러오기 실패 ;ㅁ;")
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -123,7 +122,6 @@ class FirebaseViewModel : ViewModel() {
                         list.add(result)
                     }
                 }
-                result.success("데이터 불러오기 성공 > < ")
                 _moimInfo.value = list
                 _loading.value = false
             }
@@ -134,4 +132,85 @@ class FirebaseViewModel : ViewModel() {
         val database = Firebase.database.reference
         database.child("moim").child(moimInfo.id).setValue(moimInfo)
     }
+
+    fun deleteMoim(moimInfo: MoimInfo, memebers: List<MemberInfoDTO>, result: SendResult) {
+        val database = Firebase.database.reference.child("moim").child(moimInfo.id)
+
+        _loading.value = true
+
+        database.removeValue().addOnSuccessListener {
+            minusCount(moimInfo, memebers, result)
+        }.addOnFailureListener { e ->
+            _loading.value = false
+            result.fail("벙 삭제가 실패했습니다 ㅇㅁㅇ : $e")
+        }
+    }
+
+    fun minusCount(moimInfo: MoimInfo, memebers: List<MemberInfoDTO>, result: SendResult) {
+        val attendList = moimInfo.attendee.split(",")
+        val attendMember = arrayListOf<MemberInfoDTO>()
+        val creatorMember = memebers.firstOrNull { it.nickname == moimInfo.creator }
+
+        memebers.forEach { member ->
+            attendList.forEach {
+                if (it == member.nickname) {
+                    attendMember.add(member)
+                }
+            }
+        }
+
+        if (creatorMember != null) {
+            creatorCountRemove(creatorMember, object : SendResult {
+                override fun success(string: String) {
+                    attendCountRemove(attendMember, result)
+                }
+
+                override fun fail(string: String) {
+                    result.fail("벙 삭제가 실패했습니다 ㅇㅁㅇ")
+                    _loading.value = false
+                }
+
+            })
+        } else {
+            attendCountRemove(attendMember, result)
+        }
+    }
+
+    private fun creatorCountRemove(info: MemberInfoDTO, result: SendResult) {
+        val database = Firebase.database.reference
+        info.createCount -= 1
+
+        val childUpdates = hashMapOf<String, Any>(
+            "/user/${info.nickname}" to info
+        )
+
+        database.updateChildren(childUpdates).addOnSuccessListener {
+            result.success("데이터 전송에 성공!")
+        }.addOnFailureListener { e ->
+            result.fail("데이터 전송에 실패ㅠㅠ : $e")
+            _loading.value = false
+        }
+    }
+
+    fun attendCountRemove(memberInfos: List<MemberInfoDTO>, result: SendResult) {
+        val database = Firebase.database.reference
+        var isSucessCount = 0
+        memberInfos.forEach {
+            it.attendeCount -= 1
+            val childUpdates = hashMapOf<String, Any>(
+                "/user/${it.nickname}" to it
+            )
+            database.updateChildren(childUpdates).addOnSuccessListener {
+                isSucessCount++
+                if (isSucessCount == memberInfos.size) result.success("데이터 전송에 성공!")
+                _loading.value = false
+            }.addOnFailureListener { e ->
+                result.fail("데이터 전송에 실패ㅠㅠ : $e")
+                _loading.value = false
+            }
+        }
+
+    }
+
+
 }

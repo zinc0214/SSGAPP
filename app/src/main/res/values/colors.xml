@@ -30,4 +30,6 @@
     <color name="yellowColor">#F3864C</color>
     <color name="yellowMemberColor">#5A2A10</color>
     <color name="greenColor">#8BC34A</color>
+
+    <color name="noticeColor">#6A0D0D</color>
 </resources>

@@ -30,8 +30,8 @@ class MemberInfoDTO : Serializable {
     val addr: String = ""
     val signDate: String = ""
     val lastDate: String = ""
-    val attendeCount: Long = 0.toLong()
-    val createCount: Long = 0.toLong()
+    var attendeCount: Long = 0.toLong()
+    var createCount: Long = 0.toLong()
     val gender: String = ""
     val realName: String? = ""
     val phone: String? = ""
@@ -57,6 +57,13 @@ data class MemberInfo(
         return if (signDday == -1 && lastDday > 0) lastDday
         else if (lastDday == -1 && signDday > 0) signDday
         else if (signDday.compareTo(lastDday) == 1) lastDday else signDday
+    }
+
+    fun getDdayString(): String {
+        getDday().apply {
+            return if (this > 0) "+${this}"
+            else "$this"
+        }
     }
 
     fun dDayState(dday: Int): DDayType {

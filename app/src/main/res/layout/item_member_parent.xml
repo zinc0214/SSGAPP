@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:padding="5dp"
-            android:text="@{`D+` + memberInfo.dday}"
+            android:text="@{`D` + memberInfo.ddayString}"
             android:textColor="@color/_fafafa"
             app:layout_constraintStart_toEndOf="@id/nickname"
             app:layout_constraintTop_toTopOf="parent"
@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInfo"
-            tools:text="010 5581 8406" />
+            tools:text="010 111 2222" />
 
 
         <TextView
