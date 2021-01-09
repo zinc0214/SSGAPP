@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInfo"
-            tools:text="010 5581 8406" />
+            tools:text="010 111 2222" />
 
 
         <TextView
