@@ -9,6 +9,14 @@
             name="moimInfo"
             type="com.zinc0214.ssgapp.MoimInfo" />
 
+        <variable
+            name="editClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="deleteClickListener"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,6 +68,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/attendee"
             tools:text="장소 : 잠실새내, 종류 : 술벙" />
+
+        <ImageView
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{editClickListener::onClick}"
+            android:padding="5dp"
+            android:src="@drawable/edit"
+            app:layout_constraintEnd_toStartOf="@id/deleteButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{deleteClickListener::onClick}"
+            android:padding="5dp"
+            android:src="@drawable/delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

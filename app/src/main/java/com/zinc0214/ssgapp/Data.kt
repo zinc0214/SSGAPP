@@ -30,8 +30,8 @@ class MemberInfoDTO : Serializable {
     val addr: String = ""
     val signDate: String = ""
     val lastDate: String = ""
-    val attendeCount: Long = 0.toLong()
-    val createCount: Long = 0.toLong()
+    var attendeCount: Long = 0.toLong()
+    var createCount: Long = 0.toLong()
     val gender: String = ""
     val realName: String? = ""
     val phone: String? = ""
