@@ -21,14 +21,22 @@ class AddMoimActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddMoimBinding
     private lateinit var viewModel: FirebaseViewModel
     private var membersInfo = ArrayList<MemberInfo>()
+    private var memberInfoDTOv = ArrayList<MemberInfoDTO>()
+    private var moimInfo: MoimInfo? = null
     private var selectDate = SimpleDateFormat("yyyy/MM/dd").format(Date()).toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val memberInfoDTO = intent.getSerializableExtra("memberInfo") as ArrayList<MemberInfoDTO>
         membersInfo = changeDTO(memberInfoDTO)
+        memberInfoDTOv = memberInfoDTO
+        val intentMoimInfo = intent.getSerializableExtra("moimInfo") as? MoimInfo
+        moimInfo = intentMoimInfo
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_moim)
         viewModel = FirebaseViewModel()
+
+        preSetUpView()
         setUpView()
     }
 
@@ -50,7 +58,7 @@ class AddMoimActivity : AppCompatActivity() {
             }
 
             calendar.setOnDateChangeListener { _, p1, p2, p3 ->
-                val month = if (p2 == 9) "10" else "${p2 + 1}"
+                val month = if (p2 == 9) "10" else (p2 + 1).setDate()
                 val day = if (p3 == 10) "10" else p3.setDate()
                 selectDate = "$p1/$month/$day"
                 Log.e("ayhan", "selectDate : $selectDate")
@@ -59,11 +67,62 @@ class AddMoimActivity : AppCompatActivity() {
             confirmClickListener =
                 View.OnClickListener {
                     if (previousCheck() && checkCreator()) {
-                        addMoim()
-                        addMoimInfo()
+                        if (moimInfo != null) {
+                            viewModel.deleteMoim(
+                                moimInfo!!,
+                                memberInfoDTOv,
+                                object : FirebaseViewModel.SendResult {
+                                    override fun success(string: String) {
+                                        viewModel.loadMembersInfo(object :
+                                            FirebaseViewModel.SendResult {
+                                            override fun success(string: String) {
+                                                addMoim()
+                                                addMoimInfo()
+                                            }
+
+                                            override fun fail(string: String) {
+                                                Toast.makeText(
+                                                    this@AddMoimActivity,
+                                                    string,
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                            }
+
+                                        })
+                                    }
+
+                                    override fun fail(string: String) {
+                                        Toast.makeText(
+                                            this@AddMoimActivity,
+                                            string,
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+
+                                })
+                        } else {
+                            addMoim()
+                            addMoimInfo()
+                        }
+
                     }
                 }
         }
+
+    }
+
+    private fun preSetUpView() {
+        moimInfo?.let {
+
+            binding.apply {
+                attendeeEdit.setText("${it.creator}, ${it.attendee}")
+                addrEdit.setText(it.addr)
+                kindEdit.setText(it.kind)
+                calendar.date = it.date.toDate().time
+            }
+
+        }
+
     }
 
 

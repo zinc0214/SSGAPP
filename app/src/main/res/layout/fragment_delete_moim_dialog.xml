@@ -24,7 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="@drawable/dialog_bg"
-        android:padding="20dp">
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp">
 
         <TextView
             android:id="@+id/title"
@@ -47,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/moim_delete_desc"
-            android:textColor="@color/noticeColor"
+            android:textColor="@color/_dialogBg"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +60,7 @@
             android:id="@+id/cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/dialog_bottom_sheet_left_background"
             android:gravity="center"
             android:onClick="@{cancelButtonClickListener}"
@@ -78,8 +79,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/dialog_bottom_sheet_right_background"
             android:gravity="center"
             android:onClick="@{confirmButtonClickListener}"

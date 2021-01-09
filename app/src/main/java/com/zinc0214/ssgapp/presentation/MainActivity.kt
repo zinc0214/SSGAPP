@@ -135,6 +135,7 @@ class MainActivity : AppCompatActivity() {
 
     fun goToManagerMoim() {
         val intent = Intent(this, MoimManageActivity::class.java)
+        intent.putExtra("memberInfo", membersInfoDTOS)
         startActivity(intent)
     }
 
