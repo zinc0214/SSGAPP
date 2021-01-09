@@ -59,6 +59,13 @@ data class MemberInfo(
         else if (signDday.compareTo(lastDday) == 1) lastDday else signDday
     }
 
+    fun getDdayString(): String {
+        getDday().apply {
+            return if (this > 0) "+${this}"
+            else "$this"
+        }
+    }
+
     fun dDayState(dday: Int): DDayType {
         return when {
             dday > 30 -> DDayType.RED
