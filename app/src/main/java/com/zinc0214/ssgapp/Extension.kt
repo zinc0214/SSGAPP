@@ -67,7 +67,8 @@ fun changeDTO(infos: ArrayList<MemberInfoDTO>): ArrayList<MemberInfo> {
                 info.createCount,
                 info.gender,
                 info.realName,
-                info.phone
+                info.phone,
+                info.birthDay
             )
         )
     }

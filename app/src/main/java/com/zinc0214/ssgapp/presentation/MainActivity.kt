@@ -139,4 +139,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun goToBirthday() {
+        val intent = Intent(this, BirthdayActivity::class.java)
+        intent.putExtra("memberInfo", membersInfoDTOS)
+        startActivity(intent)
+
+    }
+
 }
