@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="confirmClickListener"
             type="android.view.View.OnClickListener" />
@@ -92,7 +93,7 @@
                         android:id="@+id/addrEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
+                        android:inputType="text"
                         android:textColor="@color/textColor"
                         android:textSize="18sp" />
 
@@ -113,7 +114,7 @@
                         android:id="@+id/kindEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
+                        android:inputType="text"
                         android:textColor="@color/textColor"
                         android:textSize="18sp" />
 
@@ -138,9 +139,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/confirm_button"
+            android:onClick="@{confirmClickListener::onClick}"
             android:padding="15dp"
             android:text="완료"
-            android:onClick="@{confirmClickListener::onClick}"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

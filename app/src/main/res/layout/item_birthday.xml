@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="month"
+            type="String" />
+
+        <variable
+            name="member"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:id="@+id/monthDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_r6_shape"
+            android:gravity="center"
+            android:minWidth="50dp"
+            android:padding="5dp"
+            android:text="@{month}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1월" />
+
+        <TextView
+            android:id="@+id/birthDayMemberTextview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{member}"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/monthDate"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="아아, 아아앙, 아아잉ㄴ ㅏ, 아ㅣㄴ아ㅏㅏㅣ아 ㅏ,, 아아ㅣㄴ아ㅣ ,ㅏㅇ  ㅣ아니안아ㅣㄴ;" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

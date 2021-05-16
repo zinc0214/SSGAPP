@@ -34,6 +34,10 @@
         <activity
             android:name=".presentation.MoimManageActivity"
             android:theme="@style/MaterialTheme" />
+
+        <activity
+            android:name=".presentation.BirthdayActivity"
+            android:theme="@style/MaterialTheme" />
     </application>
 
 </manifest>

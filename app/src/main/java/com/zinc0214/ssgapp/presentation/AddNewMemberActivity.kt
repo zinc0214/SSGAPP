@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.zinc0214.ssgapp.*
 import com.zinc0214.ssgapp.databinding.ActivityAddNewMemberBinding
+import kotlinx.android.synthetic.main.activity_add_new_member.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -60,6 +61,10 @@ class AddNewMemberActivity : AppCompatActivity() {
 
     @SuppressLint("SimpleDateFormat")
     private fun addNewMember() {
+        if (birthDayEdit.text.toString().length > 4) {
+            Toast.makeText(this, "생일을 제대로 입력했나요?", Toast.LENGTH_SHORT).show()
+            return
+        }
         with(binding) {
             val newMember = NewMember(
                 nickNameEdit.text.toString(),
@@ -68,7 +73,8 @@ class AddNewMemberActivity : AppCompatActivity() {
                 selectDate,
                 if (genderButton.isChecked) "남" else "여",
                 realNameEdit.text.toString(),
-                phoneEdit.text.toString()
+                phoneEdit.text.toString(),
+                birthDayEdit.text.toString()
             )
 
             viewMode.addNewMember(newMember, object : FirebaseViewModel.SendResult {
