@@ -37,10 +37,12 @@ class BirthDayAdapter(private val memberInfoList: ArrayList<MemberInfo>) :
 
             val monthMember = memberInfoList.filter {
                 it.getBirthDayMonth() == month.toStringMonth()
-            }
+            } as ArrayList
+
+            monthMember.sortBy { it.birthDay }
 
             binding.month = "${month}월"
-            binding.member = birthDayMemberText(monthMember as ArrayList<MemberInfo>)
+            binding.member = birthDayMemberText(monthMember)
 
         }
     }
